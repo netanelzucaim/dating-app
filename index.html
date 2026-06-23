@@ -368,9 +368,7 @@
     function sayYes() {
       document.getElementById('success').classList.add('show');
       const msg = encodeURIComponent(WHATSAPP_MSG);
-      setTimeout(() => {
-        window.open('https://wa.me/972532291952?text=' + msg, '_blank');
-      }, 600);
+      window.location.href = 'https://wa.me/972532291952?text=' + msg;
     }
   </script>
 </body>
