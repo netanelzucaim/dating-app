@@ -289,24 +289,30 @@
     <div class="wave"></div>
   </div>
 
+  <script>
+    /* ── Config — edit these to customise the invitation ── */
+    const GIRL_NAME      = 'Miss Yael Stern';
+    const SUBTITLE       = 'את מגייסת כישרונות ומטיילת בעולם –\nהגיע הזמן לגייס את עצמך לערב מדהים 😄';
+    const DATE_TIME      = 'מוצאי שבת הקרוב';
+    const LOCATION       = 'על שפת הים';
+    const WHATSAPP_MSG   = 'היי נתנאל היקר! 😍 אני ממש מתרגשת לקראת מוצאש הקרוב. 🌙✨ מחכה לזה בכיליון עיניים! 🥰🌊';
+  </script>
+
   <!-- Card -->
   <div class="card">
     <div class="top-emoji">🏖️🌙✨</div>
 
-    <h1>Miss Yael Stern</h1>
-    <p class="subtitle">
-      את מגייסת כישרונות ומטיילת בעולם –<br/>
-      הגיע הזמן לגייס את עצמך לערב מדהים 😄
-    </p>
+    <h1 id="girl-name"></h1>
+    <p class="subtitle" id="subtitle"></p>
 
     <div class="details">
       <div class="detail">
         <span class="detail-icon">🌙</span>
-        <span>מוצאי שבת הקרוב</span>
+        <span id="date-time"></span>
       </div>
       <div class="detail">
         <span class="detail-icon">🏖️</span>
-        <span>על שפת הים</span>
+        <span id="location"></span>
       </div>
     </div>
 
@@ -352,10 +358,16 @@
     makeEvasive(document.getElementById('no-btn2'), 2500);
     makeEvasive(document.getElementById('no-btn3'), 3200);
 
+    /* ── Inject config variables into the page ── */
+    document.getElementById('girl-name').textContent = GIRL_NAME;
+    document.getElementById('subtitle').innerHTML = SUBTITLE.replace('\n', '<br/>');
+    document.getElementById('date-time').textContent = DATE_TIME;
+    document.getElementById('location').textContent  = LOCATION;
+
     /* ── Yes ── */
     function sayYes() {
       document.getElementById('success').classList.add('show');
-      const msg = encodeURIComponent('היי נתנאל היקר! 😍 אני ממש מתרגשת לקראת מוצאש הקרוב. 🌙✨ מחכה לזה בכיליון עיניים! 🥰🌊');
+      const msg = encodeURIComponent(WHATSAPP_MSG);
       setTimeout(() => {
         window.open('https://wa.me/972532291952?text=' + msg, '_blank');
       }, 1800);
