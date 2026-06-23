@@ -366,9 +366,9 @@
 
     /* ── Yes ── */
     function sayYes() {
-      document.getElementById('success').classList.add('show');
       const msg = encodeURIComponent(WHATSAPP_MSG);
-      window.location.href = 'https://wa.me/972532291952?text=' + msg;
+      window.open('https://wa.me/972532291952?text=' + msg, '_blank');
+      document.getElementById('success').classList.add('show');
     }
   </script>
 </body>
