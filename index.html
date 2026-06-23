@@ -177,22 +177,30 @@
     }
     .yes-btn:active { transform: scale(0.97); }
 
-    /* ── No button (evasive) ── */
-    #no-btn {
+    /* ── No buttons (evasive) ── */
+    .no-btn {
       position: fixed;
       z-index: 20;
       font-family: 'Heebo', sans-serif;
-      font-size: 10px;
       color: rgba(255,255,255,0.35);
       background: transparent;
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 30px;
-      padding: 3px 10px;
       cursor: default;
       pointer-events: auto;
       user-select: none;
-      transition: left 0.18s ease, top 0.18s ease;
       white-space: nowrap;
+    }
+    #no-btn {
+      font-size: 10px;
+      padding: 3px 10px;
+      transition: left 0.18s ease, top 0.18s ease;
+    }
+    #no-btn2 {
+      font-size: 7px;
+      padding: 2px 7px;
+      opacity: 0.5;
+      transition: left 0.12s ease, top 0.12s ease;
     }
 
     /* ── Moon ── */
@@ -276,8 +284,8 @@
 
     <h1>יעל, שלום!</h1>
     <p class="subtitle">
-      קיבלתי שליחות מיוחדת –<br/>
-      להזמין אותך לערב שלא תשכחי
+      את מגייסת כישרונות ומטיילת בעולם –<br/>
+      הגיע הזמן לגייס את עצמך לערב מדהים 😄
     </p>
 
     <div class="details">
@@ -293,6 +301,10 @@
         <span class="detail-icon">🍓🍉🥭</span>
         <span>פירות טריים ואווירה קסומה</span>
       </div>
+      <div class="detail">
+        <span class="detail-icon">💼✈️</span>
+        <span>מגייסת כישרונות · מטיילת בעולם · ועכשיו מוזמנת לים</span>
+      </div>
     </div>
 
     <p class="question">אז מה את אומרת? 😊</p>
@@ -302,8 +314,9 @@
     </button>
   </div>
 
-  <!-- Evasive No button -->
-  <button id="no-btn">לא</button>
+  <!-- Evasive No buttons -->
+  <button id="no-btn" class="no-btn">לא</button>
+  <button id="no-btn2" class="no-btn">לא</button>
 
   <!-- Success overlay -->
   <div id="success">
@@ -315,22 +328,24 @@
   </div>
 
   <script>
-    /* ── Evasive No button ── */
-    const noBtn = document.getElementById('no-btn');
-    const margin = 60;
-
-    function randomPos() {
-      const x = margin + Math.random() * (window.innerWidth  - margin * 2 - noBtn.offsetWidth);
-      const y = margin + Math.random() * (window.innerHeight - margin * 2 - noBtn.offsetHeight);
-      noBtn.style.left = x + 'px';
-      noBtn.style.top  = y + 'px';
+    /* ── Evasive No buttons ── */
+    function makeEvasive(btn, interval) {
+      const margin = 60;
+      function randomPos() {
+        const x = margin + Math.random() * (window.innerWidth  - margin * 2 - btn.offsetWidth);
+        const y = margin + Math.random() * (window.innerHeight - margin * 2 - btn.offsetHeight);
+        btn.style.left = x + 'px';
+        btn.style.top  = y + 'px';
+      }
+      randomPos();
+      btn.addEventListener('mouseenter', randomPos);
+      btn.addEventListener('touchstart', e => { e.preventDefault(); randomPos(); }, { passive: false });
+      btn.addEventListener('click', e => { e.preventDefault(); randomPos(); });
+      setInterval(randomPos, interval);
     }
 
-    randomPos();
-    noBtn.addEventListener('mouseenter', randomPos);
-    noBtn.addEventListener('touchstart', e => { e.preventDefault(); randomPos(); }, { passive: false });
-    noBtn.addEventListener('click', e => { e.preventDefault(); randomPos(); });
-    setInterval(randomPos, 4000);
+    makeEvasive(document.getElementById('no-btn'),  4000);
+    makeEvasive(document.getElementById('no-btn2'), 2500);
 
     /* ── Yes ── */
     function sayYes() {
