@@ -319,7 +319,7 @@
 
     <p class="question">אז מה את אומרת? 😊</p>
 
-    <a id="wa-link" href="#" target="_blank" class="yes-btn" onclick="showSuccess()">
+    <a id="wa-link" href="#" class="yes-btn">
       כן! 🥰 אשמח להגיע
     </a>
   </div>
@@ -368,10 +368,6 @@
     /* ── Set WhatsApp link on page load ── */
     const msg = encodeURIComponent(WHATSAPP_MSG);
     document.getElementById('wa-link').href = 'https://wa.me/972532291952?text=' + msg;
-
-    function showSuccess() {
-      document.getElementById('success').classList.add('show');
-    }
   </script>
 </body>
 </html>
