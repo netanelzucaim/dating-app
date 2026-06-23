@@ -160,6 +160,7 @@
     /* ── Yes button ── */
     .yes-btn {
       display: inline-block;
+      text-decoration: none;
       background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
       color: #fff;
       border: none;
@@ -318,9 +319,9 @@
 
     <p class="question">אז מה את אומרת? 😊</p>
 
-    <button class="yes-btn" onclick="sayYes()">
+    <a id="wa-link" href="#" target="_blank" class="yes-btn" onclick="showSuccess()">
       כן! 🥰 אשמח להגיע
-    </button>
+    </a>
   </div>
 
   <!-- Evasive No buttons -->
@@ -364,10 +365,11 @@
     document.getElementById('date-time').textContent = DATE_TIME;
     document.getElementById('location').textContent  = LOCATION;
 
-    /* ── Yes ── */
-    function sayYes() {
-      const msg = encodeURIComponent(WHATSAPP_MSG);
-      window.open('https://wa.me/972532291952?text=' + msg, '_blank');
+    /* ── Set WhatsApp link on page load ── */
+    const msg = encodeURIComponent(WHATSAPP_MSG);
+    document.getElementById('wa-link').href = 'https://wa.me/972532291952?text=' + msg;
+
+    function showSuccess() {
       document.getElementById('success').classList.add('show');
     }
   </script>
